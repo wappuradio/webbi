@@ -1,6 +1,25 @@
 $(function() {
-	var audio = $('audio')[0];
-	var events = [], from, scrolling = false, week = 0;
+	var audio = $('audio')[0], events = [], from, scrolling = false, week = 0, player,
+	video = {
+		dash: 'http://pei.li/dash/raspi.mpd',
+		hls: 'http://pei.li/hls/raspi.m3u8'
+	},
+	conf = {
+		key: '591170a2a7c2e0abdcdd9a0d9ab1a9d9',
+		source: video,
+		playback: {
+			autoplay: true,
+			muted: true
+		},
+		style: {
+			controls: false,
+			width: '100%',
+			height: '448px'
+		},
+		tweaks: {
+			max_buffer_level: 2
+		}
+	};
 
 	function layout() {
 		if($('.new').length > 0) $('#page').removeClass('wide');
@@ -11,6 +30,31 @@ $(function() {
 		layout();
 	});
 	layout();
+	var vis = (function(){
+		var stateKey, eventKey, keys = {
+			hidden: "visibilitychange",
+			webkitHidden: "webkitvisibilitychange",
+			mozHidden: "mozvisibilitychange",
+			msHidden: "msvisibilitychange"
+		};
+		for (stateKey in keys) {
+			if (stateKey in document) {
+				eventKey = keys[stateKey];
+				break;
+			}
+		}
+		return function(c) {
+			if (c) document.addEventListener(eventKey, c);
+			return !document[stateKey];
+		}
+	})();
+	vis(function() {
+		if(vis() && $('#videoplayer').is(':visible')) {
+			player.play();
+		} else {
+			player.pause();
+		}
+	});
 	function color(str) {
 		for (var i = 0, hash = 0; i < str.length; hash = str.charCodeAt(i++) + ((hash << 5) - hash));
 		for (var i = 0, color = "#"; i < 3; color += ("00" + ((hash >> i++ * 8) & 0xFF).toString(16)).slice(-2));
@@ -148,21 +192,28 @@ $(function() {
 	$('#ohjelmakartta2').fullCalendar(options);
 
 
+	$('header img').click(function(e) {
+		e.preventDefault();
+	});
 	$('.katso').click(function(e) {
 		e.preventDefault();
 		$('nav .katso i').toggleClass('fa-eye').toggleClass('fa-eye-slash');
 		$('.lahetysta').toggle(0);
 		$('.tekstia').toggle(0);
-		//$('.info').slideToggle(500);
-		$('#videoplayer').slideToggle(750, function() {
-			if($('#videoplayer').is(':visible')) {
-				player.play();
-				ga('send', 'event', 'Video', 'play');
+		if($('#videoplayer').is(':hidden')) {
+			ga('send', 'event', 'Video', 'play');
+			if(player === undefined) {
+				player = bitdash('videoplayer').setup(conf);
 			} else {
-				player.pause();
-				ga('send', 'event', 'Video', 'stop');
+				player.load(video);
 			}
-		});
+			$('#videoplayer').slideDown(750);
+		} else {
+			ga('send', 'event', 'Video', 'stop');
+			$('#videoplayer').slideUp(750, function() {
+				player.unload();
+			});
+		}
 	});
 	$('.ohjelmat').on('click', '.ohjelma', function() {
 		if(!$(this).parent().hasClass('active')) {
@@ -239,7 +290,6 @@ $(function() {
 			for (var i = 0; i < bufferLength; i++) {
 				barHeight = dataArray[i]/1.5;
 				y = height-barHeight;
-				now = +new Date;
 				if(page.hasClass('disco')) {
 					red = Math.floor(Math.sin(freq*i + 0 + now/1000) * 127 + 128);
 					green = Math.floor(Math.sin(freq*i + 2 + now/1000) * 127 + 128);
@@ -296,25 +346,4 @@ $(function() {
 			});
 		}
 	});
-	
-
-	var conf = {
-		key: '591170a2a7c2e0abdcdd9a0d9ab1a9d9',
-		source: {
-			dash: 'http://pei.li/dash/raspi.mpd',
-			hls: 'http://pei.li/hls/raspi.m3u8',
-			poster: 'http://live.tite.fi/testikuva.png'
-		},
-		playback: {
-			autoplay: false
-		},
-		style: {
-			width: '100%',
-			height: '452px'
-		},
-		tweaks: {
-			max_buffer_level: 2
-		}
-	};
-	var player = bitdash('videoplayer').setup(conf);
 });

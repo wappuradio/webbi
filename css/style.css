@@ -4,7 +4,7 @@
 }
 
 .container-fluid {
-	max-width: 1200px;
+	max-width: 1208px;
 }
 
 html {
@@ -101,6 +101,7 @@ section {
 	display: none;
 	position: absolute;
 	z-index: 1;
+	width: 100%;
 }
 
 audio {
@@ -228,11 +229,11 @@ h2 {
 }
 
 .osallistu, .shoutbox {
-	min-height: 452px;
+	min-height: 448px;
 }
 
 .shoutbox {
-	height: 452px;
+	height: 448px;
 	position: relative;
 	overflow: hidden
 }
@@ -465,7 +466,9 @@ a:hover.tooltips {
 .bitdash-prog-bar-play, .bitdash-vol-bar-change {
 	background-color: rgb(231,17,0) !important;
 }
-
+#videoplayer, .bitdash-vc, .bitdash-ctrl-w, video {
+	border-radius: 3px;
+}
 
 
 #nick, #text {
