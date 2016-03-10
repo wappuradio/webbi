@@ -1,8 +1,8 @@
 $(function() {
 	var audio = $('audio')[0], events = [], from, scrolling = false, week = 0, player,
 	video = {
-		dash: 'http://pei.li/dash/raspi.mpd',
-		hls: 'http://pei.li/hls/raspi.m3u8'
+		dash: '//video2.wappuradio.fi/dash/wappuradio.mpd',
+		hls: '//video2.wappuradio.fi/hls/wappuradio.m3u8'
 	},
 	conf = {
 		key: '591170a2a7c2e0abdcdd9a0d9ab1a9d9',
@@ -50,9 +50,9 @@ $(function() {
 	})();
 	vis(function() {
 		if(vis() && $('#videoplayer').is(':visible')) {
-			player.play();
-		} else {
-			player.pause();
+			player.load(video);
+		} else if(player !== undefined) {
+			player.unload();
 		}
 	});
 	function color(str) {
@@ -104,7 +104,7 @@ $(function() {
 		});
 	}
 	news();
-	setInterval(news, 300000);
+	setInterval(news, 30000);
 
 	var options = {
 		events: function(start, end, timezone, callback) {
@@ -288,7 +288,7 @@ $(function() {
 			var barWidth = ((width-bufferLength) / bufferLength) * 1.25;
 			var barHeight, y, x = 0, red = 255, green = 255, blue = 255, alpha = 0.85, now;
 			for (var i = 0; i < bufferLength; i++) {
-				barHeight = dataArray[i]/1.5;
+				barHeight = dataArray[i]/1.45;
 				y = height-barHeight;
 				if(page.hasClass('disco')) {
 					red = Math.floor(Math.sin(freq*i + 0 + now/1000) * 127 + 128);
@@ -312,6 +312,15 @@ $(function() {
 		$('audio').prop('src', '').removeAttr('src');
 		$('#icon, .sivumenu .play i').removeClass('fa-pause fa-spinner fa-spin').addClass('fa-play');
 		$(canvas).hide();
+	});
+	$('.ohjelmakartta').swipe({
+		swipeLeft: function(e, direction, distance, duration, fingerCount, fingerData) {
+			$('.week:first').click();
+		},
+		swipeRight: function(e, direction, distance, duration, fingerCount, fingerData) {
+			$('.week:first').click();
+		},
+		excludedElements: 'label, button, input, select, textarea, .noSwipe'
 	});
 
 
