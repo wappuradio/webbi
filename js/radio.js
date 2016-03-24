@@ -174,9 +174,12 @@ $(function() {
 				if(done.indexOf(e.title) >= 0) continue;
 				if(e.desc.length == 0) continue;
 				done.push(e.title);
-				var img = 'img/'+e.title.toLocaleLowerCase().replace('ä', 'a').replace('ö', 'o').replace(/[^a-z0-9]/gi, '')+'.png';
-				img = 'http://lorempixel.com/320/320/?'+Math.random();
-				$('.ohjelmat .row').append('<div class="col-xs ohjelmacol"><div class="box ohjelma"><h2>'+e.title+'</h2><img class="lazy" data-original="'+img+'" alt="'+e.title+'" width="160" height="160"><div class="kuvaus">'+e.desc+'<div class="tekijat">'+(e.host?'Studiossa: '+e.host:'')+(e.prod?'<div>Tuottaja: '+e.prod+'</div>':'')+'</div></div></div></div>');
+				var img = 'img/host/'+e.title.toLocaleLowerCase().replace('ä', 'a').replace('ö', 'o').replace(/[^a-z0-9]/gi, '')+'.png';
+				var thumb = 'img/host/thumb/'+e.title.toLocaleLowerCase().replace('ä', 'a').replace('ö', 'o').replace(/[^a-z0-9]/gi, '')+'.png';
+				img = 'img/host/testi.png';
+				thumb = 'img/host/thumb/testi.png';
+				//$('.ohjelmat .row').append('<div class="col-xs ohjelmacol"><div class="box ohjelma" data-offset="'+Math.floor(Math.random()*100)+'"><h2>'+e.title+'</h2><img class="lazy" data-original="'+img+'" alt="'+e.title+'" width="160" height="160"><div class="kuvaus">'+e.desc+'<div class="tekijat">'+(e.host?'Studiossa: '+e.host:'')+(e.prod?'<div>Tuottaja: '+e.prod+'</div>':'')+'</div></div></div></div>');
+				$('.ohjelmat .row').append('<div class="col-xs ohjelmacol"><div class="box ohjelma" data-offset="'+Math.floor(Math.random()*100)+'"><h2>'+e.title+'</h2><img class="lazy" src="'+thumb+'" alt="'+e.title+'" width="160" height="160"><div class="kuvaus">'+e.desc+'<div class="tekijat">'+(e.host?'Studiossa: '+e.host:'')+(e.prod?'<div>Tuottaja: '+e.prod+'</div>':'')+'</div></div></div></div>');
 			}
 			$('img.lazy').lazyload({
 				effect: 'fadeIn'
@@ -190,7 +193,6 @@ $(function() {
 	options.defaultDate = '2016-04-25';
 	options.id = 'ohjelmakartta2';
 	$('#ohjelmakartta2').fullCalendar(options);
-
 
 	$('header img').click(function(e) {
 		e.preventDefault();
@@ -220,6 +222,7 @@ $(function() {
 			from = this;
 			var title = $(this).find('h2').html();
 			ga('send', 'event', 'Program', 'view', title);
+			$(this).find('img').attr('src', $(this).find('img').attr('src').replace(/thumb\//, ''));
 		}
 		$(this).parent().toggleClass('active');
 		var y = $(this).position().top;
@@ -231,6 +234,32 @@ $(function() {
 		}
 	});
 	$(window).scroll(function(e) {
+		var windowHeight = $(window).height();
+		var pos = $(window).scrollTop();
+		var n = 0;
+		$('.ohjelma img').each(function() {
+			var $img = $(this);
+			var firstTop = $img.offset().top;
+			var height = $img.height();
+			if (top + height < pos || top > pos + windowHeight) {
+				return;
+			}
+			var jump = 0.28*height*2124/200/100;
+			var speed = height/400;
+			if(height == 160) {
+				speed = speed*0.5
+			}
+			var offset = [], position = [];
+			for(var i = 0; i < 3; i++) {
+				Math.seedrandom(n);
+				n++;
+				position[i] = Math.floor((firstTop-pos)*speed);
+				offset[i] = Math.floor(1000*Math.random());
+				offset[i] = (offset[i]-offset[i]%jump)+(position[i]-position[i]%jump)+'px';
+			}
+			offset = offset.join(',');
+			$img.css('background-position-y', offset);
+		});
 		$('.sivumenu').css('margin-top', -Math.min($(window).scrollTop(), $('.top').position().top)-3);
 		if(scrolling) return;
 		from = undefined;
