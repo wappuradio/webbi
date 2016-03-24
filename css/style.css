@@ -368,8 +368,8 @@ p {
 	margin: 0 0 0 .7em;
 	height: 160px;
 	width: auto;
-	background-image: url(../img/blinder.png), url(../img/blinder.png), url(../img/blinder.png);
-	background-position-x: 5%, 50%, 95%;
+	background-image: url(../img/blinder2.png), url(../img/blinder2.png), url(../img/blinder2.png);
+	background-position: 2% 0, 50% 0, 98% 0;
 	background-color: black;
 	background-size: 28%;
 	background-repeat: repeat-y;
@@ -378,7 +378,12 @@ p {
 .active .ohjelma img {
 	margin: 0 0 0 .9em;
 	height: 100vh;
+	max-height: 800px;
 	width: auto;
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+	transform: perspective(600px) rotateX(3deg) translateY(-1.2%) translateZ(8px) translateX(1.5%);
+	box-shadow: 10px 0 10px 13px #000;
 }
 
 .current img {

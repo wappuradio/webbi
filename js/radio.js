@@ -234,6 +234,7 @@ $(function() {
 		}
 	});
 	$(window).scroll(function(e) {
+		window.requestAnimationFrame(function() {
 		var windowHeight = $(window).height();
 		var pos = $(window).scrollTop();
 		var n = 0;
@@ -244,7 +245,7 @@ $(function() {
 			if (top + height < pos || top > pos + windowHeight) {
 				return;
 			}
-			var jump = 0.28*height*2124/200/100;
+			var jump = 0.28*height*3185/300/100;
 			var speed = height/400;
 			if(height == 160) {
 				speed = speed*0.5
@@ -253,16 +254,18 @@ $(function() {
 			for(var i = 0; i < 3; i++) {
 				Math.seedrandom(n);
 				n++;
-				position[i] = Math.floor((firstTop-pos)*speed);
+				position[i] = Math.floor((firstTop-pos)*speed*(Math.random()+0.5));
 				offset[i] = Math.floor(1000*Math.random());
 				offset[i] = (offset[i]-offset[i]%jump)+(position[i]-position[i]%jump)+'px';
 			}
-			offset = offset.join(',');
-			$img.css('background-position-y', offset);
+			// vittu firefox offset = offset.join(',');
+			offset = '2% '+offset[0]+', 50% '+offset[1]+', 98% '+offset[2];
+			$img.css('background-position', offset);
 		});
 		$('.sivumenu').css('margin-top', -Math.min($(window).scrollTop(), $('.top').position().top)-3);
 		if(scrolling) return;
 		from = undefined;
+		});
 	});
 	$('.week').click(function(e) {
 		e.preventDefault();
