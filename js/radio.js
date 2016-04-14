@@ -1,5 +1,5 @@
 $(function() {
-	var audio = $('audio')[0], events = [], from, scrolling = false, week = 0, player,
+	var audio = $('audio')[0], events = [], from, scrolling = false, week = 0, player, inter = -1, lastframe = 0, pageY = 0,
 	video = {
 		dash: '//video2.wappuradio.fi/dash/wappuradio.mpd',
 		hls: '//video2.wappuradio.fi/hls/wappuradio.m3u8'
@@ -14,12 +14,25 @@ $(function() {
 		style: {
 			controls: false,
 			width: '100%',
-			height: '448px'
+			height: '452px'
 		},
 		tweaks: {
 			max_buffer_level: 2
 		}
 	};
+function getRandom(arr, n) {
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len;
+    }
+    return result;
+}
 
 	function layout() {
 		if($('.new').length > 0) $('#page').removeClass('wide');
@@ -30,6 +43,11 @@ $(function() {
 		layout();
 	});
 	layout();
+	var parent = $("#bannerit");
+	var divs = parent.children();
+	while (divs.length) {
+		parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+	}
 	var vis = (function(){
 		var stateKey, eventKey, keys = {
 			hidden: "visibilitychange",
@@ -60,13 +78,36 @@ $(function() {
 		for (var i = 0, color = "#"; i < 3; color += ("00" + ((hash >> i++ * 8) & 0xFF).toString(16)).slice(-2));
 		return color;
 	}
+	$('#face').click(function() {
+		var title = $(this).prop('title');
+		$('.ohjelmacol').removeClass('active');
+		$('.ohjelma').each(function() {
+			if($(this).find('h2').html() == title) {
+				$(this).click();
+				return;
+			}
+		});
+	});
 	function current() {
+		var allbanners = $("#bannerit a");
+		var friends = $('.friends');
+		var width = friends.width();
+		var n = Math.floor(width/240);
+		var banners = getRandom(allbanners, n);
+		friends.html('');
+		for(var i = 0; i < banners.length; i++) {
+			friends.append(banners[i].outerHTML);
+		}
+
 		var now = moment();
 		for(var i in events) {
 			var e = events[i];
 			if (moment(e.start).isBefore(now) && moment(e.end).isAfter(now)) {
-				var img = 'img/'+e.title.toLocaleLowerCase().replace('ä', 'a').replace('ö', 'o').replace(/[^a-z0-9]/gi, '')+'.png';
-				img = 'http://lorempixel.com/320/320/';
+				var name = e.title.toLocaleLowerCase().replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/[^a-z0-9]/gi, '');
+				if(e.title == '▲') name = 'hessukolmio';
+				var img = 'img/host/'+name+'-fs8.png';
+				var thumb = 'img/host/thumb/'+name+'-fs8.png';
+				//img = 'img/host/thumb/testi.png';
 				function setInfo(id, data) {
 					if($('#'+id).html() != data) {
 						$('#'+id).fadeOut(500, function() {
@@ -80,6 +121,7 @@ $(function() {
 				setInfo('prod', e.prod);
 				setInfo('time', moment(e.start).format('H:mm')+' — '+moment(e.end).format('H:mm'));
 				$('#face').prop('src', img);
+				$('#face').prop('title', e.title);
 				return;
 			}
 		}
@@ -174,10 +216,13 @@ $(function() {
 				if(done.indexOf(e.title) >= 0) continue;
 				if(e.desc.length == 0) continue;
 				done.push(e.title);
-				var img = 'img/host/'+e.title.toLocaleLowerCase().replace('ä', 'a').replace('ö', 'o').replace(/[^a-z0-9]/gi, '')+'.png';
-				var thumb = 'img/host/thumb/'+e.title.toLocaleLowerCase().replace('ä', 'a').replace('ö', 'o').replace(/[^a-z0-9]/gi, '')+'.png';
-				img = 'img/host/testi.png';
-				thumb = 'img/host/thumb/testi.png';
+				var name = e.title.toLocaleLowerCase().replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/[^a-z0-9]/gi, '');
+				if(e.title == '▲') name = 'hessukolmio';
+				var img = 'img/host/'+name+'-fs8.png';
+				var thumb = 'img/host/thumb/'+name+'-fs8.png';
+				//img = 'img/host/testi.png';
+				//thumb = 'img/host/thumb/testi.png';
+				e.desc = e.desc.replace(/(\s*\n+\s*)/, '<br><br>');
 				//$('.ohjelmat .row').append('<div class="col-xs ohjelmacol"><div class="box ohjelma" data-offset="'+Math.floor(Math.random()*100)+'"><h2>'+e.title+'</h2><img class="lazy" data-original="'+img+'" alt="'+e.title+'" width="160" height="160"><div class="kuvaus">'+e.desc+'<div class="tekijat">'+(e.host?'Studiossa: '+e.host:'')+(e.prod?'<div>Tuottaja: '+e.prod+'</div>':'')+'</div></div></div></div>');
 				$('.ohjelmat .row').append('<div class="col-xs ohjelmacol"><div class="box ohjelma" data-offset="'+Math.floor(Math.random()*100)+'"><h2>'+e.title+'</h2><img class="lazy" src="'+thumb+'" alt="'+e.title+'" width="160" height="160"><div class="kuvaus">'+e.desc+'<div class="tekijat">'+(e.host?'Studiossa: '+e.host:'')+(e.prod?'<div>Tuottaja: '+e.prod+'</div>':'')+'</div></div></div></div>');
 			}
@@ -217,12 +262,14 @@ $(function() {
 			});
 		}
 	});
-	$('.ohjelmat').on('click', '.ohjelma', function() {
+	$('.ohjelmat').on('click', '.ohjelma', function(e) {
+		if($(e.target).is('a')) return;
 		if(!$(this).parent().hasClass('active')) {
 			from = this;
 			var title = $(this).find('h2').html();
 			ga('send', 'event', 'Program', 'view', title);
 			$(this).find('img').attr('src', $(this).find('img').attr('src').replace(/thumb\//, ''));
+			$('.ohjelmacol').removeClass('active');
 		}
 		$(this).parent().toggleClass('active');
 		var y = $(this).position().top;
@@ -234,19 +281,26 @@ $(function() {
 		}
 	});
 	$(window).scroll(function(e) {
-		window.requestAnimationFrame(function() {
-		var windowHeight = $(window).height();
 		var pos = $(window).scrollTop();
+		$('.sivumenu').css('margin-top', -Math.min(pos, $('.top').position().top)-3);
+		if(inter >= 0) return; //todo
+		if(+new Date() - lastframe > 17) {
+			window.requestAnimationFrame(function() { scrolled(pos); });
+			lastframe = +new Date();
+		}
+	});
+	var scrolled = function(pos) {
+		var windowHeight = $(window).height();
 		var n = 0;
-		$('.ohjelma img').each(function() {
+		$('.ohjelma img, #face').each(function() {
 			var $img = $(this);
 			var firstTop = $img.offset().top;
 			var height = $img.height();
 			if (top + height < pos || top > pos + windowHeight) {
 				return;
 			}
-			var jump = 0.28*height*3185/300/100;
-			var speed = height/400;
+			var jump = 0.39*height*2803/400/122; // mitä tässä lasketaan :D
+			var speed = height/600;
 			if(height == 160) {
 				speed = speed*0.5
 			}
@@ -258,24 +312,51 @@ $(function() {
 				offset[i] = Math.floor(1000*Math.random());
 				offset[i] = (offset[i]-offset[i]%jump)+(position[i]-position[i]%jump)+'px';
 			}
-			// vittu firefox offset = offset.join(',');
-			offset = '2% '+offset[0]+', 50% '+offset[1]+', 98% '+offset[2];
+			// todo: firefox
+			offset = '-10% '+offset[0]+', 50% '+offset[1]+', 110% '+offset[2];
 			$img.css('background-position', offset);
 		});
-		$('.sivumenu').css('margin-top', -Math.min($(window).scrollTop(), $('.top').position().top)-3);
 		if(scrolling) return;
 		from = undefined;
-		});
-	});
+	}
+	scrolled();
 	$('.week').click(function(e) {
 		e.preventDefault();
 		$('.card').toggleClass('flip');
 	});
-
-
+	var volume = new Dragdealer('volume', {
+		horizontal: false,
+		vertical: true,
+		snap: true,
+		slide: false,
+		steps: 100,
+		animationCallback: function(x, y) {
+			$('audio')[0].volume = (1-y);
+			if(1-y > 0) {
+				$('#volume .handle i').removeClass('fa-volume-off').addClass('fa-volume-up');
+			} else {
+				$('#volume .handle i').removeClass('fa-volume-up').addClass('fa-volume-off');
+			}
+		}
+	});
+	$('#volume .handle').mousedown(function(e) {
+		pageY = e.pageY;
+	});
+	$('#volume .handle').mouseup(function(e) {
+		if(e.pageY == pageY) {
+			$('#volume .handle i').removeClass('fa-volume-up').addClass('fa-volume-off');
+			volume.setValue(0, 1, true);
+		}
+	});
 	$('.lightswitch').click(function(e) {
 		e.preventDefault();
 		$('#page').toggleClass('disco');
+		if(inter >= 0) {
+			clearInterval(inter);
+			inter = -1;
+		} else {
+			inter = setInterval(function() { scrolled(Date.now()/6%10000) }, 17);
+		} //todo
 	});
 	$('.play').click(function(e) {
 		e.preventDefault();
@@ -356,7 +437,7 @@ $(function() {
 	});
 
 
-	var socket = io('http://pei.li:4204');
+	var socket = io();
 	var nick = '';
 	$('#nick').on('keypress', function (e) {
 		if (e.which == 13 && $('#nick').val() != '') {

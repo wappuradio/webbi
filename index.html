@@ -5,6 +5,10 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <meta name='viewport' content='width=768, user-scalable=no'>
 <title>Rakkauden Wappuradio</title>
+<meta property='og:title' content='Rakkauden Wappuradio'>
+<meta property='og:url' content='http://wappuradio.fi'>
+<meta property='og:image' content='http://wappuradio.fi/img/fb.png'>
+<meta property='og:description' content='Rakkauden Wappuradio™ lähettää ohjelmaa 19.4. alkaen ympäri vuorokauden aina wappuaattoon asti. Kuuntele Tampereen alueella taajuudella 101,6 MHz tai netissä. Osallistu lähetykseen soittamalla numeroon 050 377 2779 sekä liittymällä IRCNetin suurimmalle* kanavalle #wappuradio.'>
 <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' type='text/css'>
 <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css' type='text/css'>
 <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.5.0/fullcalendar.css' type='text/css'>
@@ -35,6 +39,7 @@
 						<a target='_blank' href='https://facebook.com/wappuradio'><i class='fa fa-facebook-official'></i></a>
 						<a target='_blank' href='https://twitter.com/@wappuradio'><i class='fa fa-twitter'></i></a>
 						<a target='_blank' href='https://www.youtube.com/channel/UCTfupDobstvuDO5SdX5gkuQ'><i class='fa fa-youtube-play'></i></a>
+						<a target='_blank' href='https://www.instagram.com/wappuradio/'><i class='fa fa-instagram'></i></a>
 					</div>
 				</div>
 			</div>
@@ -47,6 +52,9 @@
 			<a href='#' class='katso'><i class='fa fa-fw fa-eye'></i></a>
 			<a href='#' class='play'><i class='fa fa-fw fa-play'></i></a>
 			<a href='#' class='lightswitch'><i class='fa fa-fw fa-lightbulb-o'></i></a>
+			<div id='volume' class='dragdealer'>
+				<div class='handle'><i class='fa fa-fw fa-volume-up'></i></div>
+			</div>
 		</nav>
 		<div class='row'>
 			<div class='col-xs current'></div>
@@ -57,6 +65,7 @@
 					<h2 class='onair'>ON AIR</h2>
 					<audio preload='none' crossorigin='anonymous'>
 						<source src='http://stream.wappuradio.fi/wappuradio.opus' type='audio/ogg; codecs=opus'>
+						<source src='http://stream.wappuradio.fi/wappuradio.ogg' type='audio/ogg; codecs=vorbis'>
 						<source src='http://stream.wappuradio.fi/wappuradio.mp3' type='audio/mpeg'>
 					</audio>
 					<div id='play' class='play'><a href='wappuradio.m3u' title='Kopioi tästä linkki ulkoiseen soittimeen!'>
@@ -102,6 +111,7 @@
 						<a target='_blank' href='https://facebook.com/wappuradio' class='tooltips'><i class='fa fa-facebook-official'></i><span>Käy tykkäämässä meistä Facebookissa!</span></a>
 						<a target='_blank' href='https://twitter.com/@wappuradio' class='tooltips'><i class='fa fa-twitter'></i><span>#wappuradio toimii Twitterissä ja IRCnetissä...</span></a>
 						<a href='#' class='tooltips'><i class='fa fa-hashtag'></i><span>#wappuradio toimii IRCnetissä ja Twitterissä...</span></a>
+						<a target='_blank' href='https://www.instagram.com/wappuradio/' class='tooltips'><i class='fa fa-instagram'></i><span>Ollaan myös instassa.</span></a>
 					</p>
 					</div>
 				</div>
@@ -113,6 +123,13 @@
 					<input id='nick' placeholder='Syötä nimimerkki'>
 					<input id='text' placeholder='Viesti'>
 				</div>
+			</div>
+		</div>
+	</section>
+	<section class='container-fluid'>
+		<div class='row'>
+			<div class='col-xs'>
+				<div class='box friends'></div>
 			</div>
 		</div>
 	</section>
@@ -141,6 +158,41 @@
 		<div class='row'>
 		</div>
 	</section>
+	<section class='container-fluid friends-container'>
+		<div class='row'>
+			<div class='col-xs'>
+				<div class='box'>
+					<h2>Wappuradiota tukemassa</h2>
+					<div id='bannerit'>
+<div class='friend'><a target='_blank' href='http://new.abb.com/products/robotics/yumi'><img src='img/friend/abb.png' alt='ABB'></a></div>
+<div class='friend'><a target='_blank' href='http://www.eatech.fi/'><img src='img/friend/eatech.png' alt='Eatech'></a></div>
+<div class='friend'><a target='_blank' href='http://www.evolvit.fi/'><img src='img/friend/evolvit.png' alt='Evolvit'></a></div>
+<div class='friend'><a target='_blank' href='http://www.gofore.com/'><img src='img/friend/gofore.png' alt='Gofore'></a></div>
+<div class='friend'><a target='_blank' href='http://www.kapsi.fi/'><img src='img/friend/kapsi.png' alt='kapsi.fi'></a></div>
+<div class='friend'><a target='_blank' href='http://www.jussinhannanleipa.fi/'><img src='img/friend/jussihanna.png' alt='Jussihannan Leipä Oy'></a></div>
+<div class='friend'><a target='_blank' href='http://www.ratekoulutus.fi/'><img src='img/friend/rate.png' alt='ratekoulutus.fi'></a></div>
+<div class='friend'><a target='_blank' href='http://www.sato.fi/'><img src='img/friend/sato.png' alt='sato'></a></div>
+<div class='friend'><a target='_blank' href='http://www.tut.fi/'><img src='img/friend/tty.png' alt='Tampereen teknillinen yliopisto'></a></div>
+<div class='friend'><a target='_blank' href='http://www.vstore.fi/'><img src='img/friend/vstore.png' alt='VStore'></a></div>
+<div class='friend'><a target='_blank' href='http://www.wapice.com/'><img src='img/friend/wapice.png' alt='Wapice'></a></div>
+<div class='friend'><a target='_blank' href='http://www.riemurinne.fi/'><img src='img/friend/riemurinne.png' alt='Riemurinne'></a></div>
+<div class='friend'><a target='_blank' href='http://thinkkora.com/'><img src='img/friend/kora.png' alt='Kora'></a></div>
+<div class='friend'><a target='_blank' href='https://www.facebook.com/events/631066067040940/'><img src='img/friend/bitwise.png' alt='Bitwise'></a></div>
+<div class='friend'><a target='_blank' href='http://www.digia.fi/'><img src='img/friend/digia.png' alt='Digia'></a></div>
+<div class='friend'><a target='_blank' href='http://www.hiq.fi/'><img src='img/friend/hiq.png' alt='HiQ'></a></div>
+<div class='friend'><a target='_blank' href='http://wappu.futurice.com/'><img src='img/friend/futurice.gif' alt='Futurice'></a></div>
+<div class='friend'><a target='_blank' href='http://www.yit.fi/'><img src='img/friend/yit.png' alt='YIT'></a></div>
+<div class='friend'><a target='_blank' href='http://www.pyynikin.com/'><img src='img/friend/pyynikin.png' alt='Pyynikin Käsityöläispanimo'></a></div>
+<div class='friend'><a target='_blank' href='http://www.leanware.fi/'><img src='img/friend/leanware.png' alt='Leanware'></a></div>
+<div class='friend'><a target='_blank' href='http://www.tek.fi/'><img src='img/friend/tek.png' alt='TEK'></a></div>
+<div class='friend'><a target='_blank' href='http://www.facebook.com/vohbeli'><img src='img/friend/vohbeli.png' alt='VohBeli'></a></div>
+<div class='friend'><a target='_blank' href='http://www.atostek.com/yritys/rekry/'><img src='img/friend/atostek.png' alt='Atostek'></a></div>
+<div class='friend'><a target='_blank' href='http://www.nokianpanimo.fi/'><img src='img/friend/keisari.png' alt='Keisari'></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 	<footer id='footer'>
 		<div class='container-fluid'>
 			<div class='row bottom-xs'>
@@ -157,16 +209,29 @@
 					Toimitus: <a href="mailto:wappuradio@wappuradio.fi">wappuradio@wappuradio.fi</a><br>
 					Nettisivut: <a href="mailto:webmaster@wappuradio.fi">webmaster@wappuradio.fi</a><br>
 					Mainosmyynti: <a href="mailto:mainosmyynti@wappuradio.fi">mainosmyynti@wappuradio.fi</a><br>
-					Puhelin toimitukseen: 050 377 2779<br>
+					Puhelin toimitukseen: <a href="tel:+358503772779">050 377 2779</a><br>
+					</p>
+					<h3>Striimilinkit</h3>
+					<p>Eikö toimi? Haluatko kuunnella leivänpaahtimella? Kopioi tästä linkit talteen!
+					<br><br>
+					Audio:
+					<a href="wappuradio.m3u">M3U</a> |
+					<a href="http://stream.wappuradio.fi/wappuradio.opus">Opus 96k</a> |
+					<a href="http://stream.wappuradio.fi/wappuradio.ogg">Vorbis 128k</a> |
+					<a href="http://stream.wappuradio.fi/wappuradio.mp3">MP3 128k</a>
+					<br>Video:
+					<a href="rtmp://video2.wappuradio.fi/live/wappuradio">RTMP</a> |
+					<a href="http://video2.wappuradio.fi/hls/wappuradio.m3u8">HLS</a> |
+					<a href="http://video2.wappuradio.fi/dash/wappuradio.mpd">DASH</a>
 					</p>
 				</div>
 				<div class='col-xs-4'>
-					<img src='img/logob.svg' width='270' height='180' style='margin-bottom: 15px; float: right'>
+					<img src='img/logob.svg' width='270' height='180' style='margin-bottom: 20px; float: right'>
 				</div>
 			</div>
 		</div>
 	</footer>
-	<script src='//code.jquery.com/jquery-2.1.4.min.js'></script>
+	<script src='//code.jquery.com/jquery-2.2.3.min.js'></script>
 	<script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js'></script>
 	<script src='//cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.4.1/moment-timezone-with-data-2010-2020.min.js'></script>
 	<script src='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.5.0/fullcalendar.js'></script>
@@ -176,6 +241,7 @@
 	<script src='//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js'></script>
 	<script src='//cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.15/jquery.touchSwipe.min.js'></script>
 	<script src='//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js'></script>
+	<script src='//cdnjs.cloudflare.com/ajax/libs/dragdealer/0.9.8/dragdealer.min.js'></script>
 	<script src='js/jquery.hypher.js'></script>
 	<script src='js/fi.js'></script>
 	<script>

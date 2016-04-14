@@ -22,15 +22,55 @@ header, .box, .row, .now {
 	transition: all 0.5s;
 }
 
+#bannerit {
+	background: #fff !important;
+	text-align: center;
+	font-size: 0;
+	border-radius: 3px;
+}
+
+#bannerit .friend {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0.5px;
+}
+
+#bannerit img {
+	display: block;
+}
+
+.friends-container {
+	margin-top: 0px;
+	margin-bottom: 30px;
+}
+
+.friends {
+	background: #fff !important;
+	padding: 3px !important;
+	white-space: nowrap;
+	text-align: center;
+	overflow: hidden;
+}
+
+.friends a {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.friends img {
+	display: block;
+}
+
 .wide .news {
 	margin-right: 33%;
 }
 .wide .shoutbox {
 	margin-top: -175px;
-	height: 627px;
+	height: 623px;
 }
 
 .onair {
+	display: none;
 	color: rgb(231,17,0);
 	text-shadow: 0 0 5px rgb(231,17,0);
 	float: right;
@@ -59,12 +99,12 @@ header {
 .disco, .disco .now {
 	color: #ddd;
 }
-.disco .box {
+.disco .box, .disco .face {
 	background: #2d2d2d;
 }
 .disco .fc-event {
 	border-color: #2d2d2d !important;
-	background: #1d1111 !important;
+	background: #000 !important;
 }
 .disco canvas {
 	border-bottom: 2px solid #fff;
@@ -76,6 +116,13 @@ header {
 
 .disco .active .ohjelma {
 	background-color: #2d2d2d;
+}
+.disco .friends {
+	background-color: #2d2d2d !important;
+}
+.disco .friends img {
+	filter: grayscale(1) brightness(0.33);
+	-webkit-filter: grayscale(1) brightness(0.33);
 }
 
 section {
@@ -224,7 +271,7 @@ h2 {
 
 .sivumenu a {
 	display: block;
-	color: #393939;
+	color: #595959;
 }
 
 .sivumenu a:hover {
@@ -288,6 +335,7 @@ p {
 }
 .fc .fc-event {
 	cursor: pointer !important;
+	margin: 1.2px 0 !important;
 }
 .fc .fc-title {
 	font-size: .9em !important;
@@ -362,27 +410,37 @@ p {
 	cursor: pointer;
 }
 
-.ohjelma img {
+#face {
+	cursor: pointer;
+}
+
+.ohjelma img, #face {
 	float: right;
 	border-radius: 3px;
 	margin: 0 0 0 .7em;
 	height: 160px;
 	width: auto;
-	background-image: url(../img/blinder2.png), url(../img/blinder2.png), url(../img/blinder2.png);
-	background-position: 2% 0, 50% 0, 98% 0;
+	background-image: url(../img/blinder5.png), url(../img/blinder5.png), url(../img/blinder5.png);
+	background-position: -10% 0, 50% 0, 110% 0;
 	background-color: black;
-	background-size: 28%;
+	background-size: 39%;
 	background-repeat: repeat-y;
+}
+
+.active h2 {
+	color: #fddb78;
 }
 
 .active .ohjelma img {
 	margin: 0 0 0 .9em;
 	height: 100vh;
-	max-height: 800px;
+	max-height: 700px;
 	width: auto;
 	transform-style: preserve-3d;
 	backface-visibility: hidden;
-	transform: perspective(600px) rotateX(3deg) translateY(-1.2%) translateZ(8px) translateX(1.5%);
+	-ms-backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	transform: perspective(600px) rotateX(3deg) translateY(-1.2%) translateZ(8px) translateX(1%);
 	box-shadow: 10px 0 10px 13px #000;
 }
 
@@ -393,6 +451,11 @@ p {
 
 .ohjelma h2 {
 	margin-right: -100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	letter-spacing: 0.12px;
 }
 
 #ohjelmakartta {
@@ -527,7 +590,6 @@ a:hover.tooltips {
 #shoutbox {
 	font-size: 0.85em;
 	width: 100%;
-	max-height: 100%;
 	display: flex;
 	flex-flow: column;
 	overflow: auto;
@@ -582,6 +644,9 @@ a:hover.tooltips {
 .week:hover {
 	color: #000;
 }
+.box.card {
+	background: transparent !important;
+}
 .card_container {
 	position: relative;
 	z-index: 1;
@@ -592,45 +657,40 @@ a:hover.tooltips {
 .card {
 	width: 100%;
 	height: 100%;
-	transform-style: preserve-3d;
-	transition: all 0.5s; 
+	transition: all 0.5s;
 }
 .card_container .card.flip {
-	transform: rotateY(180deg);
+	margin-left: -1400px;
+}
+.card.flip .face {
+	opacity: 0;
+}
+.card.flip .face.back {
+	opacity: 1;
 }
 .face {
+	opacity: 1;
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	backface-visibility: hidden;
-	-ms-backface-visibility: hidden;
-	transform: rotateY(0deg);
+	background: #f9f9f9;
+	border-radius: 3px;
+	transition: all 0.5s;
 }
 .face.back {
+	opacity: 0;
 	display: block;
-	transform: rotateY(180deg);
-}
-.face.back h2 {
-	right: 0;
-	padding: 0 0 0 5px;
-	border-bottom-right-radius: 0;
-	border-bottom-left-radius: 3px;
+	margin-left: 1400px;	
 }
 
-/* IE11 */
-@media all and (-ms-high-contrast:none) {
-	*::-ms-backdrop, .week {
-		display: none;
-	}
-	*::-ms-backdrop, .face {
-		height: 50%;
-		position: relative;
-		transform: rotateY(0deg)!important;
-	}
-	*::-ms-backdrop, .card_container {
-		height: 1280px;
-	}
-	*::-ms-backdrop, .back h2 {
-		display: none;
-	}
+#volume.dragdealer {
+	cursor: pointer;
+	width: 30px;
+	height: 150px;
+	border-radius: 16px;
+	background: rgba(0,0,0,0.3);
+}
+
+#volume.dragdealer:hover, #volume.dragdealer.active {
+	background: rgba(255,255,255,0.045);
 }

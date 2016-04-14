@@ -1,5 +1,7 @@
 #EXTM3U
 #EXTINF:0,Rakkauden Wappuradio Ogg Opus
 http://stream.wappuradio.fi:80/wappuradio.opus
+#EXTINF:0,Rakkauden Wappuradio Ogg Vorbis
+http://stream.wappuradio.fi:80/wappuradio.ogg
 #EXTINF:0,Rakkauden Wappuradio MP3
 http://stream.wappuradio.fi:80/wappuradio.mp3
