@@ -1,8 +1,8 @@
 $(function() {
 	var audio = $('audio')[0], events = [], from, scrolling = false, week = 0, player, inter = -1, lastframe = 0, pageY = 0,
 	video = {
-		dash: '//video2.wappuradio.fi/dash/wappuradio.mpd',
-		hls: '//video2.wappuradio.fi/hls/wappuradio.m3u8'
+		dash: '//stream.wappuradio.fi/dash/wappuradio.mpd',
+		hls: '//stream.wappuradio.fi/hls/wappuradio.m3u8'
 	},
 	conf = {
 		key: '591170a2a7c2e0abdcdd9a0d9ab1a9d9',
@@ -14,7 +14,7 @@ $(function() {
 		style: {
 			controls: false,
 			width: '100%',
-			height: '452px'
+			height: '448px'
 		},
 		tweaks: {
 			max_buffer_level: 2
@@ -102,7 +102,7 @@ function getRandom(arr, n) {
 		var now = moment();
 		for(var i in events) {
 			var e = events[i];
-			if (moment(e.start).isBefore(now) && moment(e.end).isAfter(now)) {
+			if (moment.tz(e.start, 'Europe/Helsinki').isBefore(now) && moment.tz(e.end, 'Europe/Helsinki').isAfter(now)) {
 				var name = e.title.toLocaleLowerCase().replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/[^a-z0-9]/gi, '');
 				if(e.title == '▲') name = 'hessukolmio';
 				var img = 'img/host/'+name+'-fs8.png';
@@ -339,6 +339,11 @@ function getRandom(arr, n) {
 			}
 		}
 	});
+	$('#volume.dragdealer').click(function (e) {
+		if(e.target.id != 'volume') return;
+		var vol = (e.pageY-$('#volume').offset().top)/$('#volume').height();
+		volume.setValue(0, vol, true);
+	});
 	$('#volume .handle').mousedown(function(e) {
 		pageY = e.pageY;
 	});
@@ -467,5 +472,8 @@ function getRandom(arr, n) {
 				$('#song').fadeIn(500);
 			});
 		}
+	});
+	$('#joojoo').click(function() {
+		$('#joojoo').clear();
 	});
 });

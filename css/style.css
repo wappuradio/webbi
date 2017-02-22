@@ -41,7 +41,6 @@ header, .box, .row, .now {
 
 .friends-container {
 	margin-top: 0px;
-	margin-bottom: 30px;
 }
 
 .friends {
@@ -70,7 +69,6 @@ header, .box, .row, .now {
 }
 
 .onair {
-	display: none;
 	color: rgb(231,17,0);
 	text-shadow: 0 0 5px rgb(231,17,0);
 	float: right;
@@ -440,7 +438,7 @@ p {
 	backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
-	transform: perspective(600px) rotateX(3deg) translateY(-1.2%) translateZ(8px) translateX(1%);
+	/*transform: perspective(600px) rotateX(3deg) translateY(-1.2%) translateZ(8px) translateX(1%);*/
 	box-shadow: 10px 0 10px 13px #000;
 }
 
@@ -694,3 +692,17 @@ a:hover.tooltips {
 #volume.dragdealer:hover, #volume.dragdealer.active {
 	background: rgba(255,255,255,0.045);
 }
+
+.insta {
+	text-align: center;
+}
+
+.fb-like-box, .fb-like-box span, .fb-like-box iframe, .twitter-timeline, .timeline, .insta {
+        width: 100% !important;
+        background: #fff !important;
+        border-radius: 3px;
+        height: 500px!important;
+	text-align: center;
+	
+}       
+

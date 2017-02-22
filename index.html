@@ -27,171 +27,13 @@
 			</div>
 		</div>
 	</header>
-	<nav class='menu' id='menu'>
+	<section id='quote'>
 		<div class='container-fluid'>
 			<div class='row'>
-				<div class='col-xs'>
-					<a href='#ohjelmat'><i class='fa fa-calendar'></i> Ohjelmakartta</a> &nbsp;
-					<a href='#' class='katso'><i class='fa fa-eye'></i> Katso <span class='lahetysta'>lähetystä</span><span class='tekstia' style='display: none'>jotain muuta</span></a>
-					<div class='social'>
-						<a href='tel:+358503772779'>Soita! 050 377 2779 <i class='fa fa-phone-square'></i></a>
-						<a target='_blank' href='https://telegram.me/joinchat/BqK-FwNsTSVHUcMXHrGbpw'><i class='fa fa-paper-plane'></i></a>
-						<a target='_blank' href='https://facebook.com/wappuradio'><i class='fa fa-facebook-official'></i></a>
-						<a target='_blank' href='https://twitter.com/@wappuradio'><i class='fa fa-twitter'></i></a>
-						<a target='_blank' href='https://www.youtube.com/channel/UCTfupDobstvuDO5SdX5gkuQ'><i class='fa fa-youtube-play'></i></a>
-						<a target='_blank' href='https://www.instagram.com/wappuradio/'><i class='fa fa-instagram'></i></a>
-					</div>
+				<div class='col-xs' style='color: #fff'>
+					<div style='margin: 60px auto; max-width: 480px; line-height: 1.35em'><span style='font-style: italic; color: #bbb'>"In general your station struck me high professionalism and cohesion of the team that makes the product of the highest international quality."</span><br><span style='color: #999; font-size: 0.7em; margin-left: 20px'>Listener from Ukraine</span><br><br>Rakkauden Wappuradio&trade; palaa aalloille jälleen wappuna 2017! Tämän vuoden toimitus on jo valittu ja radion suunnittelu on kovassa vauhdissa. Keskustelu jatkuu (jostain syystä) IRCnetissä kanavalla #wappuradio ympäri vuoden!</div>
 				</div>
 			</div>
-		</div>
-	</nav>
-	<section class='container-fluid top'>
-		<nav class='sivumenu'>
-			<a href='#'><i class='fa fa-fw fa-home'></i></a>
-			<a href='#ohjelmat'><i class='fa fa-fw fa-calendar'></i></a>
-			<a href='#' class='katso'><i class='fa fa-fw fa-eye'></i></a>
-			<a href='#' class='play'><i class='fa fa-fw fa-play'></i></a>
-			<a href='#' class='lightswitch'><i class='fa fa-fw fa-lightbulb-o'></i></a>
-			<div id='volume' class='dragdealer'>
-				<div class='handle'><i class='fa fa-fw fa-volume-up'></i></div>
-			</div>
-		</nav>
-		<div class='row'>
-			<div class='col-xs current'></div>
-		</div>
-		<div class='row news'>
-			<div class='col-xs'>
-				<div class='box player'>
-					<h2 class='onair'>ON AIR</h2>
-					<audio preload='none' crossorigin='anonymous'>
-						<source src='http://stream.wappuradio.fi/wappuradio.opus' type='audio/ogg; codecs=opus'>
-						<source src='http://stream.wappuradio.fi/wappuradio.ogg' type='audio/ogg; codecs=vorbis'>
-						<source src='http://stream.wappuradio.fi/wappuradio.mp3' type='audio/mpeg'>
-					</audio>
-					<div id='play' class='play'><a href='wappuradio.m3u' title='Kopioi tästä linkki ulkoiseen soittimeen!'>
-						<span class='fa-stack iconstack'>
-							<i class='fa fa-circle fa-stack-1x'></i>
-							<i id='icon' class='fa fa-play fa-stack-1x'></i>
-						</span>
-					</a></div>
-					<div class='now'>
-						<i class='fa fa-fw fa-star'></i> <span id='prog'></span><br>
-						<i class='fa fa-fw fa-clock-o'></i> <span id='time'></span><br>
-						<i class='fa fa-fw fa-microphone'></i> <span id='host'></span><br>
-						<i class='fa fa-fw fa-list-ul fa-rotate-270'></i> <span id='prod'></span><br>
-						<i class='fa fa-fw fa-music'></i> <span id='song'></span><br>
-					</div>
-					<img id='face' width='160' heiht='160'>
-				</div>
-			</div>
-		</div>
-		<div class='row'>
-			<div class='col-xs-8'>
-				<div class='box osallistu'>
-					<div id='videoplayer' title='Tuplaklikkaa kokoruutuun!'></div>
-					<div class='info'>
-					<h2>Rakastellaan missä vaan</h2>
-					<p>
-						<strong><a href='#footer'>Rakkauden Wappuradio™</a></strong> lähettää ohjelmaa 19.4. alkaen ympäri vuorokauden aina wappuaattoon asti. Kuuntele Tampereen alueella taajuudella <strong>101,6 MHz</strong> tai netissä. Osallistu lähetykseen soittamalla numeroon <strong><a href='tel:+358503772779'>050 377 2779</a></strong> sekä liittymällä IRCNetin <span title='*joka ei liity waretukseen'>suurimmalle* kanavalle</span> <strong>#wappuradio</strong>. Keskustelu käy kuumana myös <strong>Shoutboxissa</strong> joka on kytketty radion <strong><a target='_blank' href='https://telegram.me/joinchat/BqK-FwNsTSVHUcMXHrGbpw'>Telegram</a></strong>-ryhmään. Mediasta riippumatta voit esittää studioon kappaletoiveita komennolla <strong>!toive</strong> Esittäjä - Biisi.
-					</p>
-					<p>
-						Virallisemmissa(?) asioissa voit lähestyä meitä sähköpostilla:
-					</p>
-					<ul>
-						<li>päätoimitus: <a href='mailto:wappuradio@wappuradio.fi'>wappuradio@wappuradio.fi</a></li>
-						<li>nettisivut: <a href='mailto:webmaster@wappuradio.fi'>webmaster@wappuradio.fi</a></li>
-						<li>mainosmyynti: <a href='mailto:mainosmyynti@wappuradio.fi'>mainosmyynti@wappuradio.fi</a></li>
-					</ul>
-					<p class='tldr'>
-						<a target='_blank' href='wappuradio.m3u' class='tooltips play'><i class='fa fa-headphones'></i><span>Kuuntele meitä taajuudella 101,6 MHz tai klikkaamalla tästä! Voit myös kopioida tämän linkin ulkoiseen soittimeen.</span></a>
-						<a href='#' class='tooltips katso'><i class='fa fa-eye'></i><span>Katso mitä studiossa tapahtuu klikkaamalla tästä!</span></a>
-						<a href='#ohjelmat' class='tooltips'><i class='fa fa-calendar'></i><span>Ohjelmakartta löytyy tästä alapuolelta.</span></a>
-						<a href='tel:+350503772779' class='tooltips'><i class='fa fa-phone'></i><span>Puhelin toimitukseen on<br>050 377 2779.</span></a>
-						<a target='_blank' href='https://telegram.me/joinchat/BqK-FwNsTSVHUcMXHrGbpw' class='tooltips'><i class='fa fa-paper-plane'></i><span>Liity Wappuradion Telegram-ryhmään tästä linkistä!</span></a>
-						<a target='_blank' href='https://facebook.com/wappuradio' class='tooltips'><i class='fa fa-facebook-official'></i><span>Käy tykkäämässä meistä Facebookissa!</span></a>
-						<a target='_blank' href='https://twitter.com/@wappuradio' class='tooltips'><i class='fa fa-twitter'></i><span>#wappuradio toimii Twitterissä ja IRCnetissä...</span></a>
-						<a href='#' class='tooltips'><i class='fa fa-hashtag'></i><span>#wappuradio toimii IRCnetissä ja Twitterissä...</span></a>
-						<a target='_blank' href='https://www.instagram.com/wappuradio/' class='tooltips'><i class='fa fa-instagram'></i><span>Ollaan myös instassa.</span></a>
-					</p>
-					</div>
-				</div>
-			</div>
-			<div class='col-xs-4'>
-				<div class='box shoutbox'>
-					<h2 style='position: absolute; z-index: 10'>Shoutbox</h2>
-					<div id='shoutbox'></div>
-					<input id='nick' placeholder='Syötä nimimerkki'>
-					<input id='text' placeholder='Viesti'>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class='container-fluid'>
-		<div class='row'>
-			<div class='col-xs'>
-				<div class='box friends'></div>
-			</div>
-		</div>
-	</section>
-	<a name='ohjelmat'></a>
-	<section class='container-fluid ohjelmakartta_perspective'>
-		<div class='ohjelmakartta'>
-			<div class='row'>
-				<div class='col-xs'>
-					<div class='card_container'>
-						<div class='box card'>
-							<div class='face'>
-								<h2>Ohjelmakartta</h2> <a class='week' href='#'>seuraava viikko <i class='fa fa-share'></i></a>
-								<div id='ohjelmakartta'></div>
-							</div>
-							<div class='face back'>
-								<h2>Ohjelmakartta</h2> <a class='week' href='#'><i class='fa fa-reply'></i> edellinen viikko</a>
-								<div id='ohjelmakartta2'></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class='container-fluid ohjelmat'>
-		<div class='row'>
-		</div>
-	</section>
-	<section class='container-fluid friends-container'>
-		<div class='row'>
-			<div class='col-xs'>
-				<div class='box'>
-					<h2>Wappuradiota tukemassa</h2>
-					<div id='bannerit'>
-<div class='friend'><a target='_blank' href='http://new.abb.com/products/robotics/yumi'><img src='img/friend/abb.png' alt='ABB'></a></div>
-<div class='friend'><a target='_blank' href='http://www.eatech.fi/'><img src='img/friend/eatech.png' alt='Eatech'></a></div>
-<div class='friend'><a target='_blank' href='http://www.evolvit.fi/'><img src='img/friend/evolvit.png' alt='Evolvit'></a></div>
-<div class='friend'><a target='_blank' href='http://www.gofore.com/'><img src='img/friend/gofore.png' alt='Gofore'></a></div>
-<div class='friend'><a target='_blank' href='http://www.kapsi.fi/'><img src='img/friend/kapsi.png' alt='kapsi.fi'></a></div>
-<div class='friend'><a target='_blank' href='http://www.jussinhannanleipa.fi/'><img src='img/friend/jussihanna.png' alt='Jussihannan Leipä Oy'></a></div>
-<div class='friend'><a target='_blank' href='http://www.ratekoulutus.fi/'><img src='img/friend/rate.png' alt='ratekoulutus.fi'></a></div>
-<div class='friend'><a target='_blank' href='http://www.sato.fi/'><img src='img/friend/sato.png' alt='sato'></a></div>
-<div class='friend'><a target='_blank' href='http://www.tut.fi/'><img src='img/friend/tty.png' alt='Tampereen teknillinen yliopisto'></a></div>
-<div class='friend'><a target='_blank' href='http://www.vstore.fi/'><img src='img/friend/vstore.png' alt='VStore'></a></div>
-<div class='friend'><a target='_blank' href='http://www.wapice.com/'><img src='img/friend/wapice.png' alt='Wapice'></a></div>
-<div class='friend'><a target='_blank' href='http://www.riemurinne.fi/'><img src='img/friend/riemurinne.png' alt='Riemurinne'></a></div>
-<div class='friend'><a target='_blank' href='http://thinkkora.com/'><img src='img/friend/kora.png' alt='Kora'></a></div>
-<div class='friend'><a target='_blank' href='https://www.facebook.com/events/631066067040940/'><img src='img/friend/bitwise.png' alt='Bitwise'></a></div>
-<div class='friend'><a target='_blank' href='http://www.digia.fi/'><img src='img/friend/digia.png' alt='Digia'></a></div>
-<div class='friend'><a target='_blank' href='http://www.hiq.fi/'><img src='img/friend/hiq.png' alt='HiQ'></a></div>
-<div class='friend'><a target='_blank' href='http://wappu.futurice.com/'><img src='img/friend/futurice.gif' alt='Futurice'></a></div>
-<div class='friend'><a target='_blank' href='http://www.yit.fi/'><img src='img/friend/yit.png' alt='YIT'></a></div>
-<div class='friend'><a target='_blank' href='http://www.pyynikin.com/'><img src='img/friend/pyynikin.png' alt='Pyynikin Käsityöläispanimo'></a></div>
-<div class='friend'><a target='_blank' href='http://www.leanware.fi/'><img src='img/friend/leanware.png' alt='Leanware'></a></div>
-<div class='friend'><a target='_blank' href='http://www.tek.fi/'><img src='img/friend/tek.png' alt='TEK'></a></div>
-<div class='friend'><a target='_blank' href='http://www.facebook.com/vohbeli'><img src='img/friend/vohbeli.png' alt='VohBeli'></a></div>
-<div class='friend'><a target='_blank' href='http://www.atostek.com/yritys/rekry/'><img src='img/friend/atostek.png' alt='Atostek'></a></div>
-<div class='friend'><a target='_blank' href='http://www.nokianpanimo.fi/'><img src='img/friend/keisari.png' alt='Keisari'></a></div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</section>
 	<footer id='footer'>
 		<div class='container-fluid'>
@@ -206,11 +48,15 @@
 					Onko jutut huonoja? Onko musiikki väärää? Eikö mielipidettäsi kuunnella? Voiko miehet tehdä täydellistä fronside ollieta? Ota yhteyttä, kysy, kehu, valita.
 					<br><br>
 
-					Toimitus: <a href="mailto:wappuradio@wappuradio.fi">wappuradio@wappuradio.fi</a><br>
+					Päätoimitus: <a href="mailto:wappuradio@wappuradio.fi">wappuradio@wappuradio.fi</a><br>
 					Nettisivut: <a href="mailto:webmaster@wappuradio.fi">webmaster@wappuradio.fi</a><br>
 					Mainosmyynti: <a href="mailto:mainosmyynti@wappuradio.fi">mainosmyynti@wappuradio.fi</a><br>
-					Puhelin toimitukseen: <a href="tel:+358503772779">050 377 2779</a><br>
+					<!--Puhelin toimitukseen: <a href="tel:+358503772779">050 377 2779</a><br><br>
+					Vastaava toimittaja: Laura Niemi<br>
+					Tekniikkavastaava: Juho Jokelainen-->
 					</p>
+					<!--h3>Media</h3>
+					<p>Tulosta tästä hieno <a href='juliste.pdf'>promojuliste</a> työpaikalle, oppilaitokseen tai vaikka makuuhuoneen kattoon!</p>
 					<h3>Striimilinkit</h3>
 					<p>Eikö toimi? Haluatko kuunnella leivänpaahtimella? Kopioi tästä linkit talteen!
 					<br><br>
@@ -220,10 +66,10 @@
 					<a href="http://stream.wappuradio.fi/wappuradio.ogg">Vorbis 128k</a> |
 					<a href="http://stream.wappuradio.fi/wappuradio.mp3">MP3 128k</a>
 					<br>Video:
-					<a href="rtmp://video2.wappuradio.fi/live/wappuradio">RTMP</a> |
-					<a href="http://video2.wappuradio.fi/hls/wappuradio.m3u8">HLS</a> |
-					<a href="http://video2.wappuradio.fi/dash/wappuradio.mpd">DASH</a>
-					</p>
+					<a href="rtmp://stream.wappuradio.fi/live/wappuradio">RTMP</a> |
+					<a href="http://stream.wappuradio.fi/hls/wappuradio.m3u8">HLS</a> |
+					<a href="http://stream.wappuradio.fi/dash/wappuradio.mpd">DASH</a>
+					</p-->
 				</div>
 				<div class='col-xs-4'>
 					<img src='img/logob.svg' width='270' height='180' style='margin-bottom: 20px; float: right'>
@@ -253,7 +99,11 @@
 		ga('create', 'UA-34709530-3', 'auto');
 		ga('send', 'pageview');
 	</script>
-	<script src='js/radio.js'></script>
+	<!--script src='js/radio.js'></script-->
+
+
+
+                  
 </div>
 </body>
 </html>
