@@ -103,11 +103,8 @@ function getRandom(arr, n) {
 		for(var i in events) {
 			var e = events[i];
 			if (moment.tz(e.start, 'Europe/Helsinki').isBefore(now) && moment.tz(e.end, 'Europe/Helsinki').isAfter(now)) {
-				var name = e.title.toLocaleLowerCase().replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/[^a-z0-9]/gi, '');
-				if(e.title == '▲') name = 'hessukolmio';
-				var img = 'img/host/'+name+'-fs8.png';
-				var thumb = 'img/host/thumb/'+name+'-fs8.png';
-				//img = 'img/host/thumb/testi.png';
+				var img = e.photo;
+				var thumb = e.thumb;
 				function setInfo(id, data) {
 					if($('#'+id).html() != data) {
 						$('#'+id).fadeOut(500, function() {
@@ -153,7 +150,7 @@ function getRandom(arr, n) {
 			if(events.length > 0) {
 				callback(events);
 			} else {
-			        $.getJSON('/okdb/ok.json', function(data) {
+			        $.getJSON('/api/programs', function(data) {
 					events = data;
 					callback(data);
 				});
