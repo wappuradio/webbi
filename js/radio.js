@@ -150,7 +150,7 @@ function getRandom(arr, n) {
 			if(events.length > 0) {
 				callback(events);
 			} else {
-			        $.getJSON('/api/programs', function(data) {
+			        $.getJSON('https://wappuradio.fi/api/programs', function(data) {
 					events = data;
 					callback(data);
 				});
@@ -159,7 +159,7 @@ function getRandom(arr, n) {
 		eventBackgroundColor: 'rgb(231,17,0)',
 		eventBorderColor: '#fff',
 		eventTextColor: '#fff',
-		defaultDate: '2016-04-18',
+		defaultDate: '2017-04-19',
 		defaultView: 'agendaWeek',
 		header: {
 			left: '',
@@ -232,7 +232,7 @@ function getRandom(arr, n) {
 		}
 	};
 	$('#ohjelmakartta').fullCalendar(options);
-	options.defaultDate = '2016-04-25';
+	options.defaultDate = '2017-04-24';
 	options.id = 'ohjelmakartta2';
 	$('#ohjelmakartta2').fullCalendar(options);
 
