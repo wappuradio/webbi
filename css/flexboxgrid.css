@@ -4,11 +4,6 @@
   margin-left: auto;
 }
 
-.container-fluid {
-  padding-right: 2rem;
-  padding-left: 2rem;
-}
-
 .row {
   box-sizing: border-box;
   display: -webkit-box;
@@ -78,8 +73,8 @@
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+  padding-right: 0.25rem;
+  padding-left: 0.25rem;
 }
 
 .col-xs {

@@ -279,7 +279,13 @@ function getRandom(arr, n) {
 	});
 	$(window).scroll(function(e) {
 		var pos = $(window).scrollTop();
-		$('.sivumenu').css('margin-top', -Math.min(pos, $('.top').position().top)-3);
+		var top = $('.top').position().top;
+		console.log(pos + ' ' + top);
+		if (pos >= top) {
+			$('.sivumenu').addClass('scrolled');
+		} else {
+			$('.sivumenu').removeClass('scrolled');
+		}
 		if(inter >= 0) return; //todo
 		if(+new Date() - lastframe > 17) {
 			window.requestAnimationFrame(function() { scrolled(pos); });
