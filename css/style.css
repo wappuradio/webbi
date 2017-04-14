@@ -15,7 +15,7 @@ body {
 	font-family: Open Sans, sans-serif;
 	font-weight: 300;
 	color: #5f0000;
-	background: #fef2f2 url("../img/bg.png") no-repeat top;
+	background: #fef2f2 url("../img/bg-nq8.png") no-repeat top;
 	background-size: cover;
 	background-attachment: fixed;
 	overflow-x: hidden;
@@ -298,7 +298,7 @@ h2 {
 	top: 0rem;
 	margin-left: -3em;
 	width: 2em;
-	transition: all 0.5s ease-in-out;
+	/*transition: all 0.5s ease-in-out;*/
 }
 
 .sivumenu.scrolled {
@@ -455,7 +455,7 @@ p {
 }
 
 .ohjelma {
-	border-top-left-radius: 0 !important;
+	/*border-top-left-radius: 0 !important;*/
 	cursor: pointer;
 }
 
@@ -638,6 +638,8 @@ a:hover.tooltips {
 	overflow: auto;
 	position: absolute;
 	bottom: 0;
+        margin-bottom: 2rem;
+        margin-top: -2rem;
 	box-sizing: border-box;
 }
 
@@ -747,3 +749,4 @@ a:hover.tooltips {
 	
 }       
 
+@media(max-width:540px){ .fc .fc-day-header{font-size:0.8em;}}

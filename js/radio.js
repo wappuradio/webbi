@@ -1,25 +1,5 @@
 $(function() {
-	var audio = $('audio')[0], events = [], from, scrolling = false, week = 0, player, inter = -1, lastframe = 0, pageY = 0,
-	video = {
-		dash: '//stream.wappuradio.fi/dash/wappuradio.mpd',
-		hls: '//stream.wappuradio.fi/hls/wappuradio.m3u8'
-	},
-	conf = {
-		key: '591170a2a7c2e0abdcdd9a0d9ab1a9d9',
-		source: video,
-		playback: {
-			autoplay: true,
-			muted: true
-		},
-		style: {
-			controls: false,
-			width: '100%',
-			height: '448px'
-		},
-		tweaks: {
-			max_buffer_level: 2
-		}
-	};
+	var audio = $('audio')[0], events = [], from, scrolling = false, week = 0, player, inter = -1, lastframe = 0, pageY = 0;
 function getRandom(arr, n) {
     var result = new Array(n),
         len = arr.length,
@@ -68,9 +48,9 @@ function getRandom(arr, n) {
 	})();
 	vis(function() {
 		if(vis() && $('#videoplayer').is(':visible')) {
-			player.load(video);
+			//player.load(video);
 		} else if(player !== undefined) {
-			player.unload();
+			//player.unload();
 		}
 	});
 	function color(str) {
@@ -195,7 +175,7 @@ function getRandom(arr, n) {
 			});
 		},
 		eventAfterAllRender: function (view) {
-			if(moment().isAfter('2016-04-25')) {
+			if(moment().isAfter('2017-04-24')) {
 				$('.card').addClass('flip');
 			}
 		},
@@ -247,15 +227,15 @@ function getRandom(arr, n) {
 		if($('#videoplayer').is(':hidden')) {
 			ga('send', 'event', 'Video', 'play');
 			if(player === undefined) {
-				player = bitdash('videoplayer').setup(conf);
+				//player = bitdash('videoplayer').setup(conf);
 			} else {
-				player.load(video);
+				//player.load(video);
 			}
 			$('#videoplayer').slideDown(750);
 		} else {
 			ga('send', 'event', 'Video', 'stop');
 			$('#videoplayer').slideUp(750, function() {
-				player.unload();
+				//player.unload();
 			});
 		}
 	});
@@ -280,7 +260,6 @@ function getRandom(arr, n) {
 	$(window).scroll(function(e) {
 		var pos = $(window).scrollTop();
 		var top = $('.top').position().top;
-		console.log(pos + ' ' + top);
 		if (pos >= top) {
 			$('.sivumenu').addClass('scrolled');
 		} else {
@@ -476,7 +455,14 @@ function getRandom(arr, n) {
 			});
 		}
 	});
-	$('#joojoo').click(function() {
-		$('#joojoo').clear();
-	});
+	setInterval(function() {
+		var alku = new Date("2017-04-19 14:00:00")
+		var loppu = new Date("2017-04-30 15:00:00")
+		var nyt = new Date()
+		if(nyt < alku || nyt > loppu) {
+			if($('.onair').html() != 'OFF AIR') $('.onair').html('OFF AIR')
+		} else {
+			if($('.onair').html() != 'ON AIR') $('.onair').html('ON AIR')
+		}
+	}, 10000)
 });
