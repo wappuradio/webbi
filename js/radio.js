@@ -48,9 +48,10 @@ function getRandom(arr, n) {
 	})();
 	vis(function() {
 		if(vis() && $('#videoplayer').is(':visible')) {
-			//player.load(video);
-		} else if(player !== undefined) {
-			//player.unload();
+			startStream('videoplayer', window.location.protocol.replace(/http/, 'ws')+'//'+getRandom(servers, 1)[0]+'/visio-ws', true, 'auto', 2000)
+		} else if(ws !== undefined) {
+			ws.close();
+			ws = undefined;
 		}
 	});
 	function color(str) {
@@ -86,7 +87,7 @@ function getRandom(arr, n) {
 				var img = e.photo;
 				var thumb = e.thumb;
 				function setInfo(id, data) {
-					if($('#'+id).html() != data) {
+					if($('#'+id).text() != data) {
 						$('#'+id).fadeOut(500, function() {
 							$('#'+id).html(data);
 							$('#'+id).fadeIn(500);
@@ -97,7 +98,7 @@ function getRandom(arr, n) {
 				setInfo('host', e.host);
 				setInfo('prod', e.prod);
 				setInfo('time', moment(e.start).format('H:mm')+' — '+moment(e.end).format('H:mm'));
-				$('#face').prop('src', img);
+				$('#face').prop('src', thumb);
 				$('#face').prop('title', e.title);
 				return;
 			}
@@ -155,7 +156,7 @@ function getRandom(arr, n) {
 		dayNamesShort: ['Su', 'Ma', 'Ti', 'Ke', 'To', 'Pe', 'La'],
 		week: 'd. [MMMM"ta" (YYYY)]{" &ndash; "d. MMMM"ta" YYYY}',
 		timeFormat: 'H:mm',
-		columnFormat: {   
+		columnFormat: {
 			month: 'dddd',
 			week: 'ddd D.M.',
 			day: 'dddd D.M.YYYY'
@@ -168,7 +169,7 @@ function getRandom(arr, n) {
 		eventClick: function (event, jsEvent, view) {
 			$('.ohjelmacol').removeClass('active');
 			$('.ohjelma').each(function() {
-				if($(this).find('h2').html() == event.title) {
+				if($(this).find('h2').text() == event.title) {
 					$(this).click();
 					return;
 				}
@@ -215,7 +216,7 @@ function getRandom(arr, n) {
 	options.defaultDate = '2017-04-24';
 	options.id = 'ohjelmakartta2';
 	$('#ohjelmakartta2').fullCalendar(options);
-
+	$('.face:nth-child(2)').addClass('back');
 	$('header img').click(function(e) {
 		e.preventDefault();
 	});
@@ -226,16 +227,15 @@ function getRandom(arr, n) {
 		$('.tekstia').toggle(0);
 		if($('#videoplayer').is(':hidden')) {
 			ga('send', 'event', 'Video', 'play');
-			if(player === undefined) {
-				//player = bitdash('videoplayer').setup(conf);
-			} else {
-				//player.load(video);
-			}
+			startStream('videoplayer', window.location.protocol.replace(/http/, 'ws')+'//'+getRandom(servers, 1)[0]+'/visio-ws', true, 'auto', 2000)
 			$('#videoplayer').slideDown(750);
 		} else {
 			ga('send', 'event', 'Video', 'stop');
 			$('#videoplayer').slideUp(750, function() {
-				//player.unload();
+				if(ws !== undefined) {
+					ws.close();
+					ws = undefined;
+				}
 			});
 		}
 	});
@@ -266,10 +266,10 @@ function getRandom(arr, n) {
 			$('.sivumenu').removeClass('scrolled');
 		}
 		if(inter >= 0) return; //todo
-		if(+new Date() - lastframe > 17) {
+		/*if(+new Date() - lastframe > 17) {
 			window.requestAnimationFrame(function() { scrolled(pos); });
 			lastframe = +new Date();
-		}
+		}*/
 	});
 	var scrolled = function(pos) {
 		var windowHeight = $(window).height();
@@ -301,7 +301,7 @@ function getRandom(arr, n) {
 		if(scrolling) return;
 		from = undefined;
 	}
-	scrolled();
+	//scrolled();
 	$('.week').click(function(e) {
 		e.preventDefault();
 		$('.card').toggleClass('flip');
@@ -465,4 +465,57 @@ function getRandom(arr, n) {
 			if($('.onair').html() != 'ON AIR') $('.onair').html('ON AIR')
 		}
 	}, 10000)
+
+var servers = ['mordor.wappuradio.fi', 'stream.wappuradio.fi'], ws;
+
+//startStream('videoplayer', window.location.protocol.replace(/http/, 'ws')+'//'+getRandom(servers, 1)[0]+'/visio-ws', true, 'auto', 2000);
+
+function startStream(playerId, wsUri, useWorker, webgl, reconnectMs) {
+        if (!window.player) {
+                window.player = new Player({ useWorker: useWorker, webgl: webgl, size: { width: 848, height: 480 } })
+                var playerElement = document.getElementById(playerId)
+                playerElement.appendChild(window.player.canvas)
+                window.player.canvas.addEventListener('dblclick', function() {
+                        if(window.player.canvas.requestFullScreen) window.player.canvas.requestFullScreen();
+                        else if(window.player.canvas.webkitRequestFullScreen) window.player.canvas.webkitRequestFullScreen();
+                        else if(window.player.canvas.mozRequestFullScreen) window.player.canvas.mozRequestFullScreen();
+                })
+        }      
+        document.addEventListener('webkitfullscreenchange', exitHandler, false);
+        document.addEventListener('mozfullscreenchange', exitHandler, false);
+        document.addEventListener('fullscreenchange', exitHandler, false);
+        document.addEventListener('MSFullscreenChange', exitHandler, false);
+        
+        function exitHandler() {
+                if(document.fullScreenElement || document.webkitCurrentFullScreenElement || document.mozFullScreenElement) {
+                        window.player.canvas.style.width = '100vw'
+                        window.player.canvas.style.marginBottom = '0'
+                        window.player.canvas.style.border = '0'
+                } else {
+                        window.player.canvas.style.width = ''
+                        window.player.canvas.style.marginBottom = '20px'
+                        window.player.canvas.style.border = '1px solid #eee'
+                }
+        }
+        
+	if(ws !== undefined) {
+		ws.close()
+	}
+        ws = new WebSocket(wsUri)
+        ws.binaryType = 'arraybuffer'
+        ws.onopen = function (e) {
+                console.log('websocket connected')
+                ws.onmessage = function (msg) {
+                        window.player.decode(new Uint8Array(msg.data))
+                }
+        }      
+        /*ws.onclose = function (e) {
+                console.log('websocket disconnected')
+                if (reconnectMs > 0) {
+                        var el = playerId, uri = wsUri
+                        setTimeout(function() { startStream(el, uri) }, reconnectMs)
+                }
+        }*/      
+}              
+
 });

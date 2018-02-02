@@ -16,9 +16,11 @@ body {
 	font-weight: 300;
 	color: #5f0000;
 	background: #fef2f2 url("../img/bg-nq8.png") no-repeat top;
-	background-size: cover;
 	background-attachment: fixed;
-	overflow-x: hidden;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 header, .box, .row, .now {
@@ -87,6 +89,7 @@ header, .box, .row, .now {
 	right: 0.25em;
 	min-width: 5em;
 	text-align: center;
+	display: none;
 }
 
 header {
@@ -180,6 +183,13 @@ section {
 	position: absolute;
 	z-index: 1;
 	width: 100%;
+	height: 380px;
+	background: black;
+}
+
+#videoplayer canvas {
+	width: 100%;
+	height: 100%;
 }
 
 audio {
@@ -280,7 +290,6 @@ h2 {
 	margin: 0;
 	padding: 0.5em 0.5em 0;
 	font-family: Open Sans, sans-serif;
-	border-bottom-right-radius: 3px;
 	font-size: 1.5em;
 	font-weight: 800;
 	letter-spacing: 0.1em;
@@ -502,6 +511,7 @@ p {
 
 #ohjelmakartta {
 	padding-bottom: 4px;
+	max-width: 62rem;
 }
 
 h3 {
@@ -524,6 +534,9 @@ footer {
 	.osallistu {
 		line-height: 1.35em;
 	}
+	row {
+		margin: 0 5px;
+	}
 }
 
 @media (max-width: 48em) {
@@ -534,6 +547,7 @@ footer {
 	}
 	.row {
 		display: block;
+		margin: 0 5px;
 	}
 	.shoutbox {
 		margin-top: 15px;
@@ -633,6 +647,7 @@ a:hover.tooltips {
 #shoutbox {
 	font-size: 0.85em;
 	width: 100%;
+	height: 100%;
 	display: flex;
 	flex-flow: column;
 	overflow: auto;
@@ -690,7 +705,6 @@ a:hover.tooltips {
 .card_container {
 	position: relative;
 	z-index: 1;
-	perspective: 2000px;
 	height: 654px;
 	width: 100%;
 }
@@ -699,16 +713,19 @@ a:hover.tooltips {
 	height: 100%;
 	transition: all 0.5s;
 }
-.card_container .card.flip {
-	margin-left: -1400px;
+.card.flip {
+	/*margin-left: -1400px;*/
 }
 .card.flip .face {
 	opacity: 0;
+	display: none;
 }
 .card.flip .face.back {
 	opacity: 1;
+	display: block;
 }
 .face {
+	display: block;
 	opacity: 1;
 	position: absolute;
 	width: 100%;
@@ -719,8 +736,8 @@ a:hover.tooltips {
 }
 .face.back {
 	opacity: 0;
-	display: block;
-	margin-left: 1400px;	
+	/*margin-left: 1400px;
+	margin-right: -1400px;*/
 }
 
 #volume.dragdealer {
@@ -750,3 +767,4 @@ a:hover.tooltips {
 }       
 
 @media(max-width:540px){ .fc .fc-day-header{font-size:0.8em;}}
+.fc-unthemed .fc-today { background: transparent; }
