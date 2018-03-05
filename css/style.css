@@ -768,3 +768,5 @@ a:hover.tooltips {
 
 @media(max-width:540px){ .fc .fc-day-header{font-size:0.8em;}}
 .fc-unthemed .fc-today { background: transparent; }
+
+.license h1 { display: none; }

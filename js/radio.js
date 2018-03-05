@@ -125,6 +125,22 @@ function getRandom(arr, n) {
 	}
 	news();
 	setInterval(news, 30000);
+ 
+ 	function license() {
+		$.get('license.md', function(data) {
+			var converter = new showdown.Converter({noHeaderId: true});
+			var html = converter.makeHtml(data);
+			if(html != '') {
+				$('.license').html(html);
+				$('.license').show();
+				$('html, body').animate({ scrollTop: $('html').height() }, 2000);
+			}
+		});
+	}
+	$('.lisenssit').click(function(e) {
+		e.preventDefault();
+		license();
+	});
 
 	var options = {
 		events: function(start, end, timezone, callback) {
