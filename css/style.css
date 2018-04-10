@@ -12,15 +12,27 @@ html {
 }
 
 body {
-	font-family: Open Sans, sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
-	color: #5f0000;
-	background: #fef2f2 url("../img/bg-nq8.png") no-repeat top;
-	background-attachment: fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+	color: #ff979d;
+	background: #1d080c;
+	background: radial-gradient(#1d080c, #39030f, #1d080c, #39030f);
+	background-size: 400% 400%;
+	padding: 0;
+	margin: 0;
+	animation: body-bg-anim 30s ease infinite;
+}
+
+@keyframes body-bg-anim {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 100%
+	}
+	100% {
+		background-position: 0% 50%
+	}
 }
 
 header, .box, .row, .now {
@@ -229,10 +241,10 @@ nav a {
 }
 
 .now {
-	font-family: Open Sans, sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	white-space: nowrap;
 	margin: 34px -60px 0 0;
-	color: #5f0000;
+	color: #fff;
 	float: left;
 	height: 160px;
 	font-size: 0.8em;
@@ -244,7 +256,7 @@ nav a {
 .box {
 	border-radius: 3px;
 	padding: 0;
-	background: rgba(255,255,255,0.5);
+	background: rgba(0,0,0,0.4);
 	align-items: stretch;
 }
 
@@ -258,10 +270,10 @@ nav a {
 }
 
 .menu a {
-	color: #ab0b0b;
+	color: #fff;
 	text-decoration: none;
 	font-size: 0.7em;
-	border-left: 1px solid #5f0000;
+	border-left: 1px solid #ff979d;
 	padding-left: 0.5em;
 	transition: color 0.25s ease-in-out;
 }
@@ -275,7 +287,7 @@ nav a {
 }
 
 .menu a:hover {
-	color: #5f0000;
+	text-decoration: underline;
 }
 
 .social {
@@ -289,13 +301,13 @@ nav a {
 h2 {
 	margin: 0;
 	padding: 0.5em 0.5em 0;
-	font-family: Open Sans, sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 1.5em;
 	font-weight: 800;
 	letter-spacing: 0.1em;
 	text-align: center;
 	text-transform: uppercase;
-	color: #ab0b0b;
+	color: #ff979d;
 }
 
 .top {
@@ -316,12 +328,12 @@ h2 {
 }
 
 .sivumenu a, .sivumenu div {
-	color: #ab0b0b;
+	color: #fff;
 	transition: color 0.25s ease-in-out;
 }
 
 .sivumenu a:hover, .sivumenu div:hover {
-	color: #5f0000;
+	color: #ff979d;
 }
 
 .sivumenu a {
@@ -357,14 +369,13 @@ h2 {
 }
 
 a {
-	color: #ab0b0b;
+	color: #fff;
 	text-decoration: none;
-	transition: color 0.25s ease-in-out;
 	font-weight: 400;
 }
 
 a:hover {
-	color: #000;
+	text-decoration: underline;
 }
 
 p {
@@ -382,7 +393,7 @@ p {
 	display: none !important;
 }
 .fc .fc-day-header {
-	font-family: Open Sans, sans-serif !important;
+	font-family: 'Open Sans', sans-serif !important;
 	font-size: 1.5em;
 	white-space: nowrap;
 	font-weight: 300;
@@ -515,14 +526,15 @@ p {
 }
 
 h3 {
-	font-family: Open Sans, sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-weight: normal;
 }
 
 footer {
-	background: rgba(255,255,255,0.5);
+	background: rgba(0,0,0,0.4);
 	overflow: hidden;
 	margin-top: 2em;
+	padding: 2em 0 3em;
 }
 
 
@@ -622,7 +634,7 @@ a:hover.tooltips {
 	line-height: 2em;
 	box-sizing: border-box;
 	border: 0;
-	background: rgba(255, 255, 255, 0.75);
+	background: rgba(0,0,0,0.2);
 	border-bottom-left-radius: 3px;
 	border-bottom-right-radius: 3px;
 	box-sizing: border-box;
@@ -690,7 +702,7 @@ a:hover.tooltips {
 	position: absolute;
 	width: 100%;
 	text-align: center;
-	font-family: Open Sans, sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	display: block;
 	color: #ab0b0b;
 	transition: color 0.25s ease-in-out;
@@ -730,7 +742,7 @@ a:hover.tooltips {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background: rgba(255,255,255,0.5);
+	background: rgba(0,0,0,0.4);
 	border-radius: 3px;
 	transition: all 0.5s;
 }
@@ -745,12 +757,12 @@ a:hover.tooltips {
 	width: 30px;
 	height: 150px;
 	border-radius: 16px;
-	background: rgba(171,11,11,0.05);
+	background: rgba(255, 151, 157, 0.2);
 	transition: background 0.25s ease-in-out;
 }
 
 #volume.dragdealer:hover, #volume.dragdealer.active {
-	background: rgba(171,11,11,0.25);
+	background: rgba(255, 151, 157, 0.4);
 }
 
 .insta {
@@ -763,8 +775,8 @@ a:hover.tooltips {
         border-radius: 3px;
         height: 500px!important;
 	text-align: center;
-	
-}       
+
+}
 
 @media(max-width:540px){ .fc .fc-day-header{font-size:0.8em;}}
 .fc-unthemed .fc-today { background: transparent; }
