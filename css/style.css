@@ -137,7 +137,8 @@ header {
 a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end, a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-not-end, a.fc-time-grid-event.fc-v-event.fc-event.fc-not-start.fc-end {
 	border: none;
 	padding: 0.1em 0.25em;
-	background-color: rgba(217, 14, 14, 0.69) !important;
+	background-color: #5f0000 !important;
+	/*background-color: rgba(217, 14, 14, 0.69) !important;*/
 	font-weight: 300;
 }
 

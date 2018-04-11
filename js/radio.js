@@ -156,7 +156,7 @@ function getRandom(arr, n) {
 		eventBackgroundColor: 'rgb(231,17,0)',
 		eventBorderColor: '#fff',
 		eventTextColor: '#fff',
-		defaultDate: '2018-04-16',
+		defaultDate: '2018-04-17',
 		defaultView: 'agendaWeek',
 		header: {
 			left: '',
@@ -166,7 +166,7 @@ function getRandom(arr, n) {
 		slotEventOverlap: false,
 		allDaySlot: false,
 		slotDuration: '01:00:00',
-		firstDay: 1,
+		firstDay: 2,
 		contentHeight: 'auto',
 		slotLabelFormat: 'H:mm',
 		dayNamesShort: ['Su', 'Ma', 'Ti', 'Ke', 'To', 'Pe', 'La'],
@@ -192,7 +192,7 @@ function getRandom(arr, n) {
 			});
 		},
 		eventAfterAllRender: function (view) {
-			if(moment().isAfter('2018-04-23')) {
+			if(moment().isAfter('2018-04-24')) {
 				$('.card').addClass('flip');
 			}
 		},
@@ -229,7 +229,7 @@ function getRandom(arr, n) {
 		}
 	};
 	$('#ohjelmakartta').fullCalendar(options);
-	options.defaultDate = '2018-04-23';
+	options.defaultDate = '2018-04-24';
 	options.id = 'ohjelmakartta2';
 	$('#ohjelmakartta2').fullCalendar(options);
 	$('.face:nth-child(2)').addClass('back');
