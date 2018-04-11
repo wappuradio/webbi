@@ -236,21 +236,26 @@ nav a {
 	color: #fff;
 }
 
+#play a #icon {
+	transition: all 0.25s ease-in-out;
+}
+
 #play a:hover #icon {
-	text-shadow: 0 0 10px rgb(231,17,0);
+	text-shadow: 0 0 10px #000;
+	color: #ff979d;
 }
 
 .now {
 	font-family: 'Open Sans', sans-serif;
 	white-space: nowrap;
 	margin: 34px -60px 0 0;
-	color: #fff;
+	color: #ff979d;
 	float: left;
 	height: 160px;
 	font-size: 0.8em;
 }
 .now i {
-	color: #ab0b0b;
+	color: #ff979d;
 }
 
 .box {
@@ -414,12 +419,12 @@ p {
 
 .tldr {
 	text-align: center;
-	font-size: 3em;
+	font-size: 2.5em;
 	margin: .8em 0 0 0;
 }
 .tldr a {
 	text-decoration: none;
-	color: #ab0b0b;
+	color: #fff;
 }
 
 .ohjelmacol, .news .col-xs {
@@ -609,7 +614,7 @@ a:hover.tooltips span {
 	z-index: 1;
 }
 a:hover.tooltips {
-	color: #5f0000;
+	color: #ff979d;
 }
 
 
@@ -704,12 +709,11 @@ a:hover.tooltips {
 	text-align: center;
 	font-family: 'Open Sans', sans-serif;
 	display: block;
-	color: #ab0b0b;
-	transition: color 0.25s ease-in-out;
+	color: #fff;
 	margin: 0.5em 0 1em;
 }
 .week:hover {
-	color: #5f0000;
+	text-decoration: underline;
 }
 .box.card {
 	background: transparent !important;
