@@ -57,6 +57,7 @@ header, .box, .row, .now {
 }
 
 .friends-container {
+	display: none;
 	margin-top: 0px;
 }
 
@@ -70,6 +71,7 @@ header, .box, .row, .now {
 	white-space: nowrap;
 	text-align: center;
 	overflow: hidden;
+	display: none;
 }
 
 .friends a {
@@ -81,13 +83,13 @@ header, .box, .row, .now {
 	display: block;
 }
 
-.wide .news {
+/*.wide .news {
 	margin-right: 33%;
 }
 .wide .shoutbox {
 	margin-top: -10.5em;
 	height: 38.5em;
-}
+}*/
 
 .onair {
 	text-shadow: 0 0 5px rgb(231,17,0);
@@ -132,7 +134,7 @@ header {
 	margin: 0 0.1em 0 0.1em;
 }
 
-a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end {
+a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end, a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-not-end, a.fc-time-grid-event.fc-v-event.fc-event.fc-not-start.fc-end {
 	border: none;
 	padding: 0.1em 0.25em;
 	background-color: rgba(217, 14, 14, 0.69) !important;

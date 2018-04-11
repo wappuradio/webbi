@@ -125,7 +125,7 @@ function getRandom(arr, n) {
 	}
 	news();
 	setInterval(news, 30000);
- 
+
  	function license() {
 		$.get('license.md', function(data) {
 			var converter = new showdown.Converter({noHeaderId: true});
@@ -156,7 +156,7 @@ function getRandom(arr, n) {
 		eventBackgroundColor: 'rgb(231,17,0)',
 		eventBorderColor: '#fff',
 		eventTextColor: '#fff',
-		defaultDate: '2017-04-19',
+		defaultDate: '2018-04-16',
 		defaultView: 'agendaWeek',
 		header: {
 			left: '',
@@ -192,7 +192,7 @@ function getRandom(arr, n) {
 			});
 		},
 		eventAfterAllRender: function (view) {
-			if(moment().isAfter('2017-04-24')) {
+			if(moment().isAfter('2018-04-23')) {
 				$('.card').addClass('flip');
 			}
 		},
@@ -212,8 +212,8 @@ function getRandom(arr, n) {
 				done.push(e.title);
 				var name = e.title.toLocaleLowerCase().replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/[^a-z0-9]/gi, '');
 				if(e.title == '▲') name = 'hessukolmio';
-				var img = 'img/host/'+name+'-fs8.png';
-				var thumb = 'img/host/thumb/'+name+'-fs8.png';
+				var img = 'img/host/'+name+'.jpg';
+				var thumb = 'img/host/thumb/'+name+'.jpg';
 				//img = 'img/host/testi.png';
 				//thumb = 'img/host/thumb/testi.png';
 				e.desc = e.desc.replace(/(\s*\n+\s*)/, '<br><br>');
@@ -229,7 +229,7 @@ function getRandom(arr, n) {
 		}
 	};
 	$('#ohjelmakartta').fullCalendar(options);
-	options.defaultDate = '2017-04-24';
+	options.defaultDate = '2018-04-23';
 	options.id = 'ohjelmakartta2';
 	$('#ohjelmakartta2').fullCalendar(options);
 	$('.face:nth-child(2)').addClass('back');
@@ -269,7 +269,7 @@ function getRandom(arr, n) {
 		if(($(this).parent().hasClass('active') || from == this) && y != $(window).scrollTop()) {
 			scrolling = true;
 			setTimeout(function() { scrolling = false; }, 550);
-			$('html,body').stop().animate({ scrollTop: y }, '500', 'swing', function() { 
+			$('html,body').stop().animate({ scrollTop: y }, '500', 'swing', function() {
 			});
 		}
 	});
@@ -472,8 +472,8 @@ function getRandom(arr, n) {
 		}
 	});
 	setInterval(function() {
-		var alku = new Date("2017-04-19 14:00:00")
-		var loppu = new Date("2017-04-30 15:00:00")
+		var alku = new Date("2018-04-17 14:00:00")
+		var loppu = new Date("2018-04-30 15:00:00")
 		var nyt = new Date()
 		if(nyt < alku || nyt > loppu) {
 			if($('.onair').html() != 'OFF AIR') $('.onair').html('OFF AIR')
@@ -496,12 +496,12 @@ function startStream(playerId, wsUri, useWorker, webgl, reconnectMs) {
                         else if(window.player.canvas.webkitRequestFullScreen) window.player.canvas.webkitRequestFullScreen();
                         else if(window.player.canvas.mozRequestFullScreen) window.player.canvas.mozRequestFullScreen();
                 })
-        }      
+        }
         document.addEventListener('webkitfullscreenchange', exitHandler, false);
         document.addEventListener('mozfullscreenchange', exitHandler, false);
         document.addEventListener('fullscreenchange', exitHandler, false);
         document.addEventListener('MSFullscreenChange', exitHandler, false);
-        
+
         function exitHandler() {
                 if(document.fullScreenElement || document.webkitCurrentFullScreenElement || document.mozFullScreenElement) {
                         window.player.canvas.style.width = '100vw'
@@ -513,7 +513,7 @@ function startStream(playerId, wsUri, useWorker, webgl, reconnectMs) {
                         window.player.canvas.style.border = '1px solid #eee'
                 }
         }
-        
+
 	if(ws !== undefined) {
 		ws.close()
 	}
@@ -524,14 +524,14 @@ function startStream(playerId, wsUri, useWorker, webgl, reconnectMs) {
                 ws.onmessage = function (msg) {
                         window.player.decode(new Uint8Array(msg.data))
                 }
-        }      
+        }
         /*ws.onclose = function (e) {
                 console.log('websocket disconnected')
                 if (reconnectMs > 0) {
                         var el = playerId, uri = wsUri
                         setTimeout(function() { startStream(el, uri) }, reconnectMs)
                 }
-        }*/      
-}              
+        }*/
+}
 
 });
