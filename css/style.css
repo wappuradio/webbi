@@ -57,7 +57,6 @@ header, .box, .row, .now {
 }
 
 .friends-container {
-	display: none;
 	margin-top: 0px;
 }
 
@@ -71,7 +70,6 @@ header, .box, .row, .now {
 	white-space: nowrap;
 	text-align: center;
 	overflow: hidden;
-	display: none;
 }
 
 .friends a {
