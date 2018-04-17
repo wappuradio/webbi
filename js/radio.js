@@ -455,13 +455,13 @@ function getRandom(arr, n) {
 			$('#text').val('');
 		}
 	});
-	socket.on('msg', function (msg) {
+	/*socket.on('msg', function (msg) {
 		var time = moment().format('H:mm');
 		msg.nick = msg.nick.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 		msg.text = msg.text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 		$('#shoutbox').append('<div class="msg"><div class="time">'+time+'</div><div class="nick" style="color: '+color(msg.nick)+'">'+msg.nick+'</div><div class="text">'+msg.text+'</div></div>');
 		$('#shoutbox').stop().animate({ scrollTop: $('#shoutbox')[0].scrollHeight }, 500);
-	});
+	});*/
 	socket.on('np', function (song) {
 		song.song = song.song.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 		if($('#song').html() != song.song) {
@@ -470,6 +470,12 @@ function getRandom(arr, n) {
 				$('#song').fadeIn(500);
 			});
 		}
+	});
+	$.getJSON('https://wappuradio.fi/api/nowplaying', function(data) {
+		$('#song').fadeOut(500, function() {
+			$('#song').html(data.song);
+			$('#song').fadeIn(500);
+		});
 	});
 	setInterval(function() {
 		var alku = new Date("2018-04-17 14:00:00")
@@ -482,7 +488,7 @@ function getRandom(arr, n) {
 		}
 	}, 10000)
 
-var servers = ['mordor.wappuradio.fi', 'stream.wappuradio.fi'], ws;
+var servers = ['wappuradio.fi'], ws;
 
 //startStream('videoplayer', window.location.protocol.replace(/http/, 'ws')+'//'+getRandom(servers, 1)[0]+'/visio-ws', true, 'auto', 2000);
 
