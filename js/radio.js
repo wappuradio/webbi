@@ -1,5 +1,6 @@
 $(function() {
 	var audio = $('audio')[0], events = [], from, scrolling = false, week = 0, player, inter = -1, lastframe = 0, pageY = 0;
+
 function getRandom(arr, n) {
     var result = new Array(n),
         len = arr.length,
@@ -217,8 +218,17 @@ function getRandom(arr, n) {
 				//img = 'img/host/testi.png';
 				//thumb = 'img/host/thumb/testi.png';
 				e.desc = e.desc.replace(/(\s*\n+\s*)/, '<br><br>');
+				var times = [], sorted = events.slice();
+				sorted.sort(function(a, b) { return Date.parse(a.start) - Date.parse(b.start); });
+				for(var j in sorted) {
+					if(sorted[j].title == e.title) {
+						var start = new Date(sorted[j].start);
+						var end = new Date(sorted[j].end);
+						times.push(options.dayNamesShort[start.getDay()] + ' ' + start.getDate() + '.' + (1+start.getMonth()) + '. ' + start.getHours() + '&ndash;' + end.getHours());
+					}
+				}
 				//$('.ohjelmat .row').append('<div class="col-xs ohjelmacol"><div class="box ohjelma" data-offset="'+Math.floor(Math.random()*100)+'"><h2>'+e.title+'</h2><img class="lazy" data-original="'+img+'" alt="'+e.title+'" width="160" height="160"><div class="kuvaus">'+e.desc+'<div class="tekijat">'+(e.host?'Studiossa: '+e.host:'')+(e.prod?'<div>Tuottaja: '+e.prod+'</div>':'')+'</div></div></div></div>');
-				$('.ohjelmat .row').append('<div class="col-xs ohjelmacol"><div class="box ohjelma" data-offset="'+Math.floor(Math.random()*100)+'"><h2>'+e.title+'</h2><img class="lazy" src="'+thumb+'" alt="'+e.title+'" width="160" height="160"><div class="kuvaus">'+e.desc+'<div class="tekijat">'+(e.host?'Studiossa: '+e.host:'')+(e.prod?'<div>Tuottaja: '+e.prod+'</div>':'')+'</div></div></div></div>');
+				$('.ohjelmat .row').append('<div class="col-xs ohjelmacol"><div class="box ohjelma" data-offset="'+Math.floor(Math.random()*100)+'"><h2>'+e.title+'</h2><img class="lazy" src="'+thumb+'" alt="'+e.title+'" width="160" height="160"><div class="kuvaus"><div class="ajat">'+times.join('<span class="potkyla">｜</span>')+'</div>'+e.desc+'<div class="tekijat">'+(e.host?'Studiossa: '+e.host:'')+(e.prod?'<div>Tuottaja: '+e.prod+'</div>':'')+'</div></div></div></div>');
 			}
 			$('img.lazy').lazyload({
 				effect: 'fadeIn'
@@ -372,6 +382,7 @@ function getRandom(arr, n) {
 			ga('send', 'event', 'Audio', 'play');
 		}
 	});
+
 	window.AudioContext = window.AudioContext||window.webkitAudioContext;
 	if (window.AudioContext !== undefined) {
 		var context = new AudioContext();
@@ -419,6 +430,7 @@ function getRandom(arr, n) {
 			then = now - (delta % interval);
 		}
 	}
+
 	$(audio).on('playing', function(e) {
 		$('#icon, .sivumenu .play i').removeClass('fa-play fa-spinner fa-spin').addClass('fa-pause');
 		$(canvas).show();

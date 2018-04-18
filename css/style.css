@@ -447,6 +447,15 @@ p {
 	padding: 0.5em 1em;
 }
 
+.ajat {
+	margin-bottom: 0.5em;
+	color: #ef676d;
+}
+
+.potkyla {
+	color: #eee;
+}
+
 .tekijat {
 	margin-top: 1em;
 }
